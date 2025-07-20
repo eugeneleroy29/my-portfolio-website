@@ -30,7 +30,7 @@ const AboutSection = () => {
                 Get In Touch
               </a>
               <a
-                href="#"
+                href="/eugene-cv.pdf"
                 download
                 className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
               >
