@@ -15,21 +15,43 @@ const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    setIsSubmitting(true);
+  const form = e.target;
+  const formData = new FormData(form);
 
-    setTimeout(() => {
+  try {
+    const response = await fetch("https://formspree.io/f/manbewqa", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (response.ok) {
       toast({
         title: "Message Sent!",
         description: "Thank you for your message. I'll get back to you soon.",
       });
-      setIsSubmitting(false);
-    }, 1500);
-
-    
-  };
+      form.reset(); // clear the form
+    } else {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+      });
+    }
+  } catch (error) {
+    toast({
+      title: "Error",
+      description: "Failed to send message.",
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
@@ -102,13 +124,19 @@ const ContactSection = () => {
             <div className="pt-8">
               <h4 className="font-medium mb-4">Connect With Me</h4>
               <div className="flex space-x-4 justify-center">
-                <a href="https://www.linkedin.com/in/eugeneleroy" target="_blank">
+                <a
+                  href="https://www.linkedin.com/in/eugeneleroy"
+                  target="_blank"
+                >
                   <Linkedin />
                 </a>
                 <a href="https://www.facebook.com/euge.gene" target="_blank">
                   <Facebook />
                 </a>
-                <a href="https://www.instagram.com/eugeneleroy/" target="_blank">
+                <a
+                  href="https://www.instagram.com/eugeneleroy/"
+                  target="_blank"
+                >
                   <Instagram />
                 </a>
               </div>
@@ -172,7 +200,7 @@ const ContactSection = () => {
                   "cosmic-button w-full flex items-center justify-center gap-2"
                 )}
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? "Sending..." : "Send Message"}
                 <Send size={16} />
               </button>
             </form>
