@@ -98,7 +98,7 @@ const ProjectsSection = () => {
           <a
             href="https://github.com/eugeneleroy29"
             target="_blank"
-            className="cosmic-button w-fit flex items-center mx-auto gap-2"
+            className="default-button w-fit flex items-center mx-auto gap-2"
           >
             Check My Github <ArrowRight size={16} />
           </a>
