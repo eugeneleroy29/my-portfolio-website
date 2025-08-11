@@ -37,7 +37,7 @@ const HeroSection = () => {
           {/* Image Section */}
           <div className="flex-shrink-0 w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-primary shadow-lg opacity-0 animate-fade-in-delay-2">
             <img
-              src="/profile.png"
+              src="/profile.jpg"
               alt="Eugene Sunie"
               className="w-full h-full object-cover"
             />
